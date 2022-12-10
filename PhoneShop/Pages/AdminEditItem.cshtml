@@ -1,0 +1,94 @@
+﻿@page
+@model PhoneShop.Pages.AdminEditItemModel
+@{
+    Layout = "_LayoutAdmin";
+    var photopath = $"/img/{Model.Phone.PhotoPath}";
+    var photopath1 = $"/img/{Model.Phone.PhotoPath1}";
+    var photopath2 = $"/img/{Model.Phone.PhotoPath2}";
+}
+<h1>Редактирования товара</h1>
+<form method="post" asp-page-handler="OnPost">
+    <input type="hidden" asp-for="Phone.Id" />
+    <input type="hidden" asp-for="Phone.PhotoPath" />
+    <input type="hidden" asp-for="Phone.PhotoPath1" />
+    <input type="hidden" asp-for="Phone.PhotoPath2" />
+    @if (!string.IsNullOrWhiteSpace(ViewData["sm"]?.ToString()))
+    {
+        <div class="alert alert-success">
+            @ViewData["sm"]?.ToString()
+        </div>
+    }
+    @if(!string.IsNullOrWhiteSpace(ViewData["dm"]?.ToString()))
+    {
+        <div class="alert alert-danger">
+            @ViewData["dm"]?.ToString()
+            <div asp-validation-summary="All"></div>
+        </div>
+    }
+    <div class="container">
+        <div class="form-outline mb-2">
+            <input placeholder="@Model.Phone.Name" asp-for="Phone.Name" type="text" class="form-control" />
+            <label class="form-label">Наименование товара</label>
+        </div>
+        <div class="form-outline mb-2">
+            <input placeholder="@Model.Phone.Price" asp-for="Phone.Price" type="number" class="form-control" />
+            <label class="form-label">Цена</label>
+        </div>
+        <div class="form-outline mb-2">
+            <input placeholder="@Model.Phone.Capacity" asp-for="Phone.Capacity" type="number" class="form-control" />
+            <label class="form-label">Ёмкость в GB</label>
+        </div>
+        <div class="form-outline mb-2">
+            <input placeholder="@Model.Phone.Color" asp-for="Phone.Color" type="text" class="form-control" />
+            <label class="form-label">Цвет ус-ва</label>
+        </div>
+
+        <div class="row img-thumbnail">
+            <div class="col">
+                <div class="form-outline mb-4 col">
+                    <label class="form-label" style="font-weight:700">Картинка 1</label>
+                    <input asp-for="@Model.Phone.PhotoPath" type="text" class="form-control" />
+                </div>
+                <div>
+                    <input asp-for="Photo" class="custom-file-input form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <img asp-append-version=true class="img-thumbnail" style="width:150px; height:150px" src="@photopath" />
+            </div>
+        </div>
+
+        <div class="row img-thumbnail">
+            <div class="col">
+                <div class="form-outline mb-4 col">
+                    <label class="form-label" style="font-weight:700">Картинка 2</label>
+                    <input asp-for="@Model.Phone.PhotoPath1" type="text" class="form-control" />
+                </div>
+                <div>
+                    <input asp-for="Photo1" class="custom-file-input form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <img asp-append-version=true class="img-thumbnail" style="width:150px; height:150px" src="@photopath1" />
+            </div>
+        </div>
+
+        <div class="row  img-thumbnail">
+            <div class="col">
+                <div class="form-outline mb-4 col">
+                    <label class="form-label" style="font-weight:700">Картинка 3</label>
+                    <input asp-for="@Model.Phone.PhotoPath2" type="text" class="form-control" />
+                </div>
+                <div>
+                    <input asp-for="Photo2" class="custom-file-input form-control" />
+                </div>
+            </div>
+            <div class="col">
+                <img asp-append-version=true class="img-thumbnail" style="width:150px; height:150px" src="@photopath2" />
+            </div>
+        </div>
+
+        <a class="btn btn-primary" asp-page="/AdminItemsList">Назад</a>
+        <button asp-route-id="@Model.Phone.Id" type="submit" class="btn btn-primary">Обновить</button>
+    </div>
+</form>

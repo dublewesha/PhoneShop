@@ -1,0 +1,30 @@
+﻿@page
+@model PhoneShop.Pages.AdminRoleCreateModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<form method="post">
+    <h1>Визард создания новой роли</h1>
+    @if (TempData["SM"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SM"]
+        </div>
+    }
+    @if (TempData["DM"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["DM"]
+            <p></p>
+            <div asp-validation-summary="All"></div>
+        </div>
+    }
+    <div class="container">
+        <div class="form-outline mb-4">
+            <input asp-for="RoleName.Name" type="text" class="form-control" />
+            <label class="form-label">Имя роли</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Создать</button>
+    </div>
+</form>

@@ -1,0 +1,57 @@
+﻿@page
+@model PhoneShop.Pages.AdminItemsListModel
+@using System.Globalization
+@{
+    ViewData["Title"] = "Список продуктов";
+    Layout = "_LayoutAdmin";
+    var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+    nfi.NumberGroupSeparator = " ";
+
+}
+<div class="text-center">
+    <h1>Каталог товаров</h1>
+</div>
+<form method="get" class="mb-3">
+    <div class="row pt-3">
+        <div class="col">
+            <div class="input-group" style="padding-left:50px; padding-right:10px">
+                <a style="padding-right:10px; padding-top:5px">Поиск по наименованию товара: </a>
+                <input class="form-control" asp-for="Search" />
+                <div class="input-group-append" style="padding-left:20px">
+                    <button type="submit" class="btn btn-primary">Поиск</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</form>
+<form method="post" asp-page-handler="">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Описание товара</th>
+                <th>Img</th>
+                <th>Цвет</th>
+                <th>Стоимость</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Model)
+            {
+                var photoPath = $"/img/{item.PhotoPath}";
+                <tr>
+                    <td>@item.Name @item.Capacity GB</td>
+                    <td><img asp-append-version="true" src="@photoPath" style="width:40px; height:40px" /></td>
+                    <td></td>
+                    <td>@item.Price.ToString("#,#", nfi) ₽</td>
+                    <td>
+                        <a asp-page="/AdminEditItem" asp-route-id="@item.Id" class="btn btn-primary">Редактировать</a>
+                        <a asp-page="/AdminDeleteItem" asp-route-id="@item.Id" class="btn btn-primary">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,68 @@
+﻿@page
+@model KatalogModel
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Каталог";
+    var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+    nfi.NumberGroupSeparator = " ";
+}
+
+
+<div class="container shadow-lg">
+
+    <div class="text-center" style="margin-top:30px; margin-bottom:20px">
+        <h1 class="display-4" style="font-weight:500">Все устройства</h1>
+    </div>
+
+    <form method="get" class="mb-3">
+        <div class="row">
+            <div class="col">
+                
+            </div>
+            <div class="col">
+                <div class="input-group" style="padding-left:120px; padding-right:50px">
+                    <input class="form-control" asp-for="SearchTerm" />
+                    <div class="input-group-append" style="padding-left:20px">
+                        <button type="submit" class="btn btn-primary">Поиск</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        @foreach (var item in Model.Phones)
+        {
+            var photoPath = $"/img/{item.PhotoPath}";
+            var photoPath1 = $"/img/{item.PhotoPath1}";
+            var photoPath2 = $"/img/{item.PhotoPath2}";
+            var name = item.Name;
+            var price = item.Price.ToString("#,#", nfi);
+            var id = item.Id;
+            var capacity = item.Capacity;
+            var color = item.Color;
+
+            <div class="col-12">
+                <div class="col-mb-5" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
+                    <div class="row py-3 shadow-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" asp-append-version=true src="@photoPath" alt="photo1">
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h4 class="font-weight-bolder">@name</h4>
+                                    <h5 class="font-weight-bolder">@capacity ГБ</h5>
+                                    <div style="font-size:25px; font-weight:500;">@price руб</div>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" asp-page="/PhoneSetup" asp-route-name="@name" asp-route-capacity="@capacity" asp-route-color="@color">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

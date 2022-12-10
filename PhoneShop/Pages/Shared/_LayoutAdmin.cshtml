@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="p-3 text-bg-dark sticky-top">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size:16px">
+                    <li><a asp-page="/Shared/Index" class="nav-link px-2 text-white">Главная(Б)</a></li>
+                    <li><a asp-page="/Katalog" class="nav-link px-2 text-white">Каталог(Б)</a></li>
+                    <li><a asp-page="/AdminItemsList" class="nav-link" style="color:white">Товары (А)</a></li>
+                    <li><a asp-page="/AdminCurrentsOrders" class="nav-link" style="color:white">Заказы(А)</a></li>
+                    <li><a asp-page="/AdminListUsers" class="nav-link" style="color:white">Пользователи(А)</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color:white" href="#" data-bs-toggle="dropdown" aria-expanded="false">BACKEND</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-page="/AdminRoleCreate" asp-route-Id=4>Создание ролей</a></li>
+                            <li><a class="dropdown-item" asp-page="/AdminGiveRoles" asp-route-Id=4>Выдача ролей</a></li>
+                        </ul>
+                    </li>
+                    <li><a asp-page="/Delivery" class="nav-link px-2 text-white">Доставка(Б)</a></li>
+                    <li><a asp-page="/About" class="nav-link px-2 text-white">О нас(Б)</a></li>
+                </ul>
+                <div class="text-end">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a>Приветик, @UserManager.GetUserName(User) !</a>
+                        <a asp-page="/LogoutForm" type="button" class="btn btn-outline-light me-2">Выйти</a>
+                    }
+                    else
+                    {
+                        <a asp-page="/LoginForm" type="button" class="btn btn-outline-light me-2">Вход</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@page
+@model PhoneShop.Pages.AdminDeleteItemModel
+@using System.Globalization
+@{
+    var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+    nfi.NumberGroupSeparator = " ";
+    var photoPath = $"/img/{Model.Phone.PhotoPath}";
+    var photoPath1 = $"/img/{Model.Phone.PhotoPath1}";
+    var photoPath2 = $"/img/{Model.Phone.PhotoPath2}";
+}
+
+<div class="alert alert-dark" style="padding-bottom:100px">
+    <div class="img-thumbnail" style="padding-left:120px">
+        <div class="row">
+            <div class="col">
+                <img src="@photoPath" width="250" />
+            </div>
+            <div class="col">
+                <img src="@photoPath1" width="250" />
+            </div>
+            <div class="col" style="padding-right:180px">
+                <img src="@photoPath2" width="250" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top:20px">
+        <div class="col-12 col-md-6 col-xl-4 offset-sm-0 offset-md-3 offset-xl-4">
+            <div class="text-center text-secondary">
+                <h4>Наименование: <span class="text-primary">@Model.Phone.Name</span></h4><hr />
+                <h4>Объем памяти: <span class="text-primary">@Model.Phone.Capacity GB</span></h4><hr />
+                <h4>Стоимость: <span class="text-primary">@Model.Phone.Price.ToString("#,#", nfi) ₽</span></h4><hr />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h5>Вы уверены, что хотите удалить - @Model.Phone.Name ?</h5>
+
+            <form method="post">
+                <button type="submit" class="btn btn-danger">Да</button>
+                <a class="btn btn-success" asp-page="/AdminItemsList">Нет</a>
+            </form>
+        </div>
+    </div>
+</div>

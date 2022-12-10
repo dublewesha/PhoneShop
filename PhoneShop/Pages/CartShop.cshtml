@@ -1,0 +1,153 @@
+﻿@page
+@model PhoneShop.Pages.CartShopModel
+@using System.Globalization
+@{
+    ViewData["Title"] = "Корзина";
+    var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+    nfi.NumberGroupSeparator = " ";
+    var sum = Model.Summary;
+}
+
+
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="row">
+                            @*Сама корзина*@
+                            <div class="col-lg-7">
+                                <h5 class="mb-3">
+                                    <a asp-page="/Katalog" class="text-body">
+                                        <i class="fas fa-long-arrow-alt-left me-2"></i>Вернуться к покупкам
+                                    </a>
+                                </h5>
+                                <hr>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div>
+                                        <p class="mb-1">Корзина</p>
+                                        @if (Model.CartItems.Count > 0)
+                                        {
+                                            <p class="mb-0">Количество товаров в корзине: @Model.CartItems.Count</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="mb-0">У вас пока нет товаров в корзине</p>
+                                        }
+                                    </div>
+                                </div>
+
+                                @if (Model.CartItems.Count > 0)
+                                {
+                                    @foreach (var item in Model.Model)
+                                    {
+                                        var cartitemId = item.ItemCartId;
+                                        var photoPath = $"/img/{item.PhotoPath}";
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div>
+                                                            <img src="@photoPath" class="img-fluid rounded-3" alt="item" style="width: 65px;">
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <h5>@item.ItemName</h5>
+                                                            <p class="small mb-0">
+                                                                @if (item.Color.Contains("black"))
+                                                                {
+                                                                    <a>Черный,</a>
+                                                                }
+                                                                else if (item.Color.Contains("blue"))
+                                                                {
+                                                                    <a>Синий,</a>
+                                                                }
+                                                                else if (item.Color.Contains("green"))
+                                                                {
+                                                                    <a>Зеленый,</a>
+                                                                }
+                                                                else if (item.Color.Contains("gold"))
+                                                                {
+                                                                    <a>Золотой,</a>
+                                                                }
+                                                                else if (item.Color.Contains("purple"))
+                                                                {
+                                                                    <a>Фиолетовый,</a>
+                                                                }
+                                                                else if (item.Color.Contains("red"))
+                                                                {
+                                                                    <a>Красный,</a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a>@item.Color,</a>
+                                                                }
+                                                                @item.Capacity GB
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div style="width: 110px;">
+                                                            <h5 class="mb-0">@item.Price.ToString("#,#", nfi) ₽</h5>
+                                                        </div>
+                                                        <form method="post">
+                                                            <button asp-page-handler="DeleteItemFromCart" type="submit" class="btn btn-secondary" asp-route-id="@item.HiddenId">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <h2 class="text-center">Ваша корзина пока пуста</h2>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                }
+                            </div>
+                            @*Общая сумма и информация о корзине*@
+                            <div class="col-lg-5">
+                                <div class="card bg-primary text-white rounded-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <p class="mb-2">Общая сумма заказа</p>
+                                            <p class="mb-2">@sum.ToString("#,#", nfi) ₽</p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <p class="mb-2">Всего</p>
+                                            @if (sum == 0)
+                                            {
+                                                <p class="mb-2">0 ₽</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="mb-2">@sum.ToString("#,#", nfi) ₽</p>
+                                            }
+                                        </div>
+                                        <form method="post">
+                                            <button type="submit" asp-page-handler="ConfirmOrder" class="btn btn-info btn-block btn-lg">
+                                                Оформить заказ
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

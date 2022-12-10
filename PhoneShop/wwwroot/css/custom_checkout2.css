@@ -1,0 +1,225 @@
+/* line 7, _colors.scss.liquid */
+.header-scheme-01 {
+  background-color: #f7f8fa;
+  color: #999; }
+
+/* line 11, _colors.scss.liquid */
+.header-scheme-02 {
+  background-color: #ffffff; }
+
+/* line 14, _colors.scss.liquid */
+.header-scheme-03 {
+  color: #fff; }
+
+/* line 17, _colors.scss.liquid */
+.breadcrumb-scheme-01 {
+  background-color: #f7f8fa;
+  color: #999; }
+
+/* line 21, _colors.scss.liquid */
+.footer-scheme-01 {
+  background-color: #ee137e;
+  color: #fff; }
+
+/* line 25, _colors.scss.liquid */
+.footer-scheme-02 {
+  background-color: #f7f8fa;
+  color: #999; }
+
+/* line 29, _colors.scss.liquid */
+.footer-scheme-03 {
+  background-color: #000000;
+  color: #fff; }
+
+/* line 2, custom_checkout2.scss */
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* line 6, custom_checkout2.scss */
+.insales-section-checkout {
+  font-family: 'Montserrat', sans-serif !important;
+  color: #000; }
+  /* line 9, custom_checkout2.scss */
+  .insales-section-checkout .co-logo img {
+    max-width: 200px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    margin-right: 20px; }
+  /* line 16, custom_checkout2.scss */
+  .insales-section-checkout .co-header-phone a {
+    color: #000;
+    text-decoration: none !important; }
+  /* line 20, custom_checkout2.scss */
+  .insales-section-checkout .co-title {
+    font-weight: 600;
+    color: #000; }
+  /* line 24, custom_checkout2.scss */
+  .insales-section-checkout .co-title--h1 {
+    font-size: 34px;
+    line-height: 38px; }
+  /* line 28, custom_checkout2.scss */
+  .insales-section-checkout .co-title--h2 {
+    font-size: 20px;
+    line-height: 24px; }
+  /* line 32, custom_checkout2.scss */
+  .insales-section-checkout .co-title--h3 {
+    font-size: 16px;
+    line-height: 20px; }
+  /* line 36, custom_checkout2.scss */
+  .insales-section-checkout .co-button, .insales-section-checkout .picker-button {
+    border-radius: 0px;
+    background-color: #ee137e;
+    color: #fff;
+    font-size: 14px;
+    line-height: 22px;
+    height: auto;
+    font-weight: 600;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+    /* line 46, custom_checkout2.scss */
+    .insales-section-checkout .co-button:hover, .insales-section-checkout .co-button:focus, .insales-section-checkout .picker-button:hover, .insales-section-checkout .picker-button:focus {
+      background-color: #000;
+      color: #fff; }
+  /* line 51, custom_checkout2.scss */
+  .insales-section-checkout .co-section--checkout_order {
+    padding: 1px 0px;
+    background: #fff; }
+  /* line 55, custom_checkout2.scss */
+  .insales-section-checkout .co-order-state {
+    padding: 5px 10px;
+    line-height: 18px;
+    border-radius: 0px;
+    white-space: normal; }
+  /* line 61, custom_checkout2.scss */
+  .insales-section-checkout .co-social_login-button {
+    font-size: 14px !important; }
+  /* line 64, custom_checkout2.scss */
+  .insales-section-checkout form .co-social_login-button {
+    margin: 0px; }
+  /* line 67, custom_checkout2.scss */
+  .insales-section-checkout #form {
+    max-width: 640px; }
+  /* line 70, custom_checkout2.scss */
+  .insales-section-checkout .co-bonus_points-submit {
+    background-color: #f8dc68;
+    color: #000; }
+    /* line 73, custom_checkout2.scss */
+    .insales-section-checkout .co-bonus_points-submit:hover, .insales-section-checkout .co-bonus_points-submit:focus {
+      background-color: #000;
+      color: #fff; }
+  /* line 78, custom_checkout2.scss */
+  .insales-section-checkout .co-input-field:hover, .insales-section-checkout .co-input-field:focus, .insales-section-checkout .picker-input--active {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  /* line 83, custom_checkout2.scss */
+  .insales-section-checkout .co-button--link, .insales-section-checkout .co-button--password_recover {
+    background-color: transparent !important;
+    color: #000; }
+    /* line 86, custom_checkout2.scss */
+    .insales-section-checkout .co-button--link:hover, .insales-section-checkout .co-button--link:focus, .insales-section-checkout .co-button--password_recover:hover, .insales-section-checkout .co-button--password_recover:focus {
+      color: #ee137e; }
+  /* line 91, custom_checkout2.scss */
+  .insales-section-checkout .link--active, .insales-section-checkout .co-link--active {
+    color: #ee137e; }
+  /* line 94, custom_checkout2.scss */
+  .insales-section-checkout a:not([class]) {
+    text-decoration: underline; }
+  /* line 97, custom_checkout2.scss */
+  .insales-section-checkout a:not([class]):focus, .insales-section-checkout a:not([class]):hover, .insales-section-checkout .link:focus, .insales-section-checkout .link:hover, .insales-section-checkout .co-link:focus, .insales-section-checkout .co-link:hover {
+    color: #ee137e; }
+  /* line 100, custom_checkout2.scss */
+  .insales-section-checkout .co-bonus_points-info b {
+    color: #ee137e; }
+  /* line 103, custom_checkout2.scss */
+  .insales-section-checkout .co-checkout-order_form {
+    margin: 0px;
+    background-color: #fff; }
+  /* line 107, custom_checkout2.scss */
+  .insales-section-checkout .co-checkout-block--padded {
+    padding: 40px; }
+  /* line 110, custom_checkout2.scss */
+  .insales-section-checkout .co-checkout-block--padded + .co-checkout-block--padded {
+    padding-top: 0px; }
+  /* line 113, custom_checkout2.scss */
+  .insales-section-checkout .co-checkout-block--padded + .co-login > .co-checkout-block--padded {
+    padding-top: 0px; }
+  /* line 116, custom_checkout2.scss */
+  .insales-section-checkout .co-checkout-title {
+    margin: 0px; }
+  /* line 119, custom_checkout2.scss */
+  .insales-section-checkout .co-checkout-block--padded + .co-section--content > .co-checkout-block--padded {
+    padding-top: 0px; }
+  /* line 122, custom_checkout2.scss */
+  .insales-section-checkout .co-overlay {
+    z-index: 10400; }
+  /* line 125, custom_checkout2.scss */
+  .insales-section-checkout .co-modal {
+    z-index: 10500;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  /* line 131, custom_checkout2.scss */
+  .insales-section-checkout .co-order-information_value > * {
+    margin: 5px 10px 5px 0px; }
+  /* line 134, custom_checkout2.scss */
+  .insales-section-checkout .co-notice--flash {
+    padding: 20px;
+    margin: 40px 40px 0px; }
+  /* line 138, custom_checkout2.scss */
+  .insales-section-checkout .co-basket_item-image img {
+    max-width: 80%;
+    max-height: 80%; }
+
+/* line 143, custom_checkout2.scss */
+.co-sidebar, .co-sidebar--menu, .co-sidebar--menu:after {
+  background-color: #f7f8fa; }
+
+/* line 146, custom_checkout2.scss */
+.co-sidebar:after {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 50%;
+  z-index: -1;
+  background-color: #f7f8fa; }
+
+/* line 158, custom_checkout2.scss */
+.layout--box .co-sidebar:after, .layout--box .co-sidebar--menu:after {
+  display: none !important; }
+
+/* line 163, custom_checkout2.scss */
+.header-contacts-phone > a:hover {
+  color: #0bb648 !important; }
+
+@media screen and (max-width: 1024px) {
+  /* line 169, custom_checkout2.scss */
+  .insales-section-checkout .co-sidebar--menu {
+    z-index: 5000; } }
+@media screen and (max-width: 480px) {
+  /* line 178, custom_checkout2.scss */
+  .adaptive .insales-section-checkout .co-button--checkout {
+    margin: 0px; }
+  /* line 182, custom_checkout2.scss */
+  .adaptive .insales-section-checkout .co-checkout-block--padded {
+    padding: 20px; }
+  /* line 185, custom_checkout2.scss */
+  .adaptive .insales-section-checkout .co-toggable_field-input {
+    -ms-flex: 0 0 1.5rem;
+    flex: 0 0 1.5rem; }
+  /* line 189, custom_checkout2.scss */
+  .adaptive .insales-section-checkout .co-notice--flash {
+    margin: 20px; }
+
+  /* line 194, custom_checkout2.scss */
+  .co-order-information_value > * {
+    width: 100%;
+    margin-right: 0px !important; }
+    /* line 197, custom_checkout2.scss */
+    .co-order-information_value > * input {
+      width: 100%;
+      margin-right: 0px; } }

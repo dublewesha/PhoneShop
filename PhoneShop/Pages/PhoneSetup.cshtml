@@ -1,0 +1,295 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using System.Globalization
+@model PhoneShop.Pages.PhoneSetupModel
+@inject SignInManager<IdentityUser> SignInManager1
+@{
+    var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+    nfi.NumberGroupSeparator = " ";
+    var photoPath = $"/img/{Model.Phone.PhotoPath}";
+    var photoPath1 = $"/img/{Model.Phone.PhotoPath1}";
+    var photoPath2 = $"/img/{Model.Phone.PhotoPath2}";
+    var Name = Model.Phone.Name;
+    var Price = Model.Phone.Price.ToString("#,#", nfi);
+    var Color = Model.Phone.Color;
+    var Id = Model.Phone.Id;
+    var Capacity = Model.Phone.Capacity;
+    ViewData["Title"] = Name.ToString();
+    var msg = ViewData["sm"]?.ToString();
+}
+<input type="hidden" asp-for="Phone.Name" />
+<input type="hidden" asp-for="Phone.Capacity" />
+<input type="hidden" asp-for="Phone.Color" />
+
+<form method="post">
+    <div class="container-fluid" style="margin-top:30px">
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <div class="row">
+                <div class="col-2 justify-content-center">
+
+                    <div class="row-1">
+                        <a href="#">
+                            <img style="margin-left:70px; margin-top:20px" class="img-thumbnail secondaryimg" src="@photoPath" width="120" height="120" asp-append-version=true />
+                        </a>
+                    </div>
+
+                    <div class="row-1">
+                        <a href="#">
+                            <img style="margin-left:70px" class="img-thumbnail secondaryimg" src="@photoPath1" width="120" height="120" asp-append-version=true />
+                        </a>
+                    </div>
+
+                    <div class="row-1">
+                        <a href="#">
+                            <img style="margin-left:70px" class="img-thumbnail secondaryimg" src="@photoPath2" width="120" height="120" asp-append-version=true />
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-4 img-thumbnail">
+                    <img id="mainImage" src="@photoPath" width="400" height="400" asp-append-version=true />
+                </div>
+
+                <div class="col" style="margin-left:50px">
+
+                    <div class="row"><h1>@Name @Capacity ГБ</h1></div><br />
+
+                    <div class="row"><h2 style="color:orangered">@Price ₽</h2></div>
+
+                    <div class="btn-group btn-group-toggle" style="margin-top:30px" data-toggle="buttons">
+                        @if (Capacity == 64)
+                        {
+                            <a class="btn btn-secondary" style="background-color: peachpuff; color: black" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="64" asp-route-Color="@Color">64 GB</a>
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="128" asp-route-Color="@Color">128 GB</a>
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="256" asp-route-Color="@Color">256 GB</a>
+                        }
+                        else if (Capacity == 128)
+                        {
+                            if (Color.Contains("12nopro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="64" asp-route-Color="@Color">64 GB</a>
+                            }
+                            <a class="btn btn-secondary" style="background-color: peachpuff; color: black" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="128" asp-route-Color="@Color">128 GB</a>
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="256" asp-route-Color="@Color">256 GB</a>
+                            if (!Color.Contains("12nopro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="512" asp-route-Color="@Color">512 GB</a>
+                            }
+                            if (Name.Contains("Pro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="1024" asp-route-Color="@Color">1 TB</a>
+                            }
+                        }
+                        else if (Capacity == 256)
+                        {
+                            if (Color.Contains("12nopro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="64" asp-route-Color="@Color">64 GB</a>
+                            }
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="128" asp-route-Color="@Color">128 GB</a>
+                            <a class="btn btn-secondary" style="background-color: peachpuff; color: black" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="256" asp-route-Color="@Color">256 GB</a>
+                            if (!Color.Contains("12nopro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="512" asp-route-Color="@Color">512 GB</a>
+                            }
+                            if (Name.Contains("Pro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="1024" asp-route-Color="@Color">1 TB</a>
+                            }
+                        }
+                        else if (Capacity == 512)
+                        {
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="128" asp-route-Color="@Color">128 GB</a>
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="256" asp-route-Color="@Color">256 GB</a>
+                            <a class="btn btn-secondary" style="background-color: peachpuff; color: black" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="512" asp-route-Color="@Color">512 GB</a>
+                            if (Name.Contains("Pro"))
+                            {
+                                <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="1024" asp-route-Color="@Color">1 TB</a>
+                            }
+                        }
+                        else
+                        {
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="128" asp-route-Color="@Color">128 GB</a>
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="256" asp-route-Color="@Color">256 GB</a>
+                            <a class="btn btn-secondary" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="512" asp-route-Color="@Color">512 GB</a>
+                            if (Name.Contains("Pro"))
+                            {
+                                <a class="btn btn-secondary" style="background-color: peachpuff; color: black" asp-page="/PhoneSetup" asp-route-Name="@Name" asp-route-Capacity="1024" asp-route-Color="@Color">1 TB</a>
+                            }
+                        }
+                    </div> <br />
+
+                    <h3 style="font-size:20px; padding-top:20px">
+                        Цвет:
+                        @if (Color.Contains("gold"))
+                        {
+                            <span style="color: purple">золото</span>
+                        }
+                        else if (Color.Contains("black"))
+                        {
+                            <span style="color: purple">черный</span>
+                        }
+                        else if (Color.Contains("silver"))
+                        {
+                            <span style="color: purple">серебрянный</span>
+                        }
+                        else if (Color.Contains("purple"))
+                        {
+                            <span style="color: purple">фиолетовый</span>
+                        }
+                        else if (Color.Contains("green"))
+                        {
+                            <span style="color: purple">зеленый</span>
+                        }
+                        else if (Color.Contains("starlight"))
+                        {
+                            <span style="color: purple">звездный</span>
+                        }
+                        else if (Color.Contains("white"))
+                        {
+                            <span style="color: purple">белый</span>
+                        }
+                        else if (Color.Contains("blue"))
+                        {
+                            <span style="color: purple">синий</span>
+                        }
+                        else if (Color.Contains("red"))
+                        {
+                            <span style="color: purple">красный</span>
+                        }
+                    </h3>
+                    @if (Color.Contains("14pro"))
+                    {
+                        <div class="wrapper" style="padding:0 0 0 0; margin-top:10px">
+                            <a style="background-color: #121212" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14problack" class="icon choise">
+                                <span class="tooltip">Серый</span>
+                            </a>
+                            <a style="background-color: #f2ecb3" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14progold" class="icon choise">
+                                <span class="tooltip">Золотой</span>
+                            </a>
+                            <a style="background-color: #eb7eed" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14propurple" class="icon choise">
+                                <span class="tooltip">Фиолетовый</span>
+                            </a>
+                            <a style="background-color: #d6d6d6" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14prosilver" class="icon choise">
+                                <span class="tooltip">Серебро</span>
+                            </a>
+                        </div>
+                    }
+                    else if (Color.Contains("14nopro"))
+                    {
+                        <div class="wrapper" style="padding:0 0 0 0; margin-top:10px">
+                            <a style="background-color: #121212" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14noproblack" class="icon choise">
+                                <span class="tooltip">Черный</span>
+                            </a>
+                            <a style="background-color: #adb8f0" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14noproblue" class="icon choise">
+                                <span class="tooltip">Голубой</span>
+                            </a>
+                            <a style="background-color: #eb7eed" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14nopropurple" class="icon choise">
+                                <span class="tooltip">Фиолетовый</span>
+                            </a>
+                            <a style="background-color: #bd2f40" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="14noprored" class="icon choise">
+                                <span class="tooltip">Красный</span>
+                            </a>
+                        </div>
+                    }
+                    else if (Color.Contains("13pro"))
+                    {
+                        <div class="wrapper" style="padding:0 0 0 0; margin-top:10px">
+                            <a style="background-color: #f2ecb3" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13progold" class="icon choise">
+                                <span class="tooltip">Золотой</span>
+                            </a>
+                            <a style="background-color: #adb8f0" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13problue" class="icon choise">
+                                <span class="tooltip">Голубой</span>
+                            </a>
+                            <a style="background-color: #5ba868" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13progreen" class="icon choise">
+                                <span class="tooltip">Зеленый</span>
+                            </a>
+                            <a style="background-color: #dbdbdb" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13prosilver" class="icon choise">
+                                <span class="tooltip">Серебрянный</span>
+                            </a>
+                        </div>
+                    }
+                    else if (Color.Contains("13nopro"))
+                    {
+                        <div class="wrapper" style="padding:0 0 0 0; margin-top:10px">
+                            <a style="background-color: #121212" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13noproblack" class="icon choise">
+                                <span class="tooltip">Черный</span>
+                            </a>
+                            <a style="background-color: #adb8f0" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13noproblue" class="icon choise">
+                                <span class="tooltip">Голубой</span>
+                            </a>
+                            <a style="background-color: #eb7eed" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13nopropurple" class="icon choise">
+                                <span class="tooltip">Фиолетовый</span>
+                            </a>
+                            <a style="background-color: #bd2f40" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13noprored" class="icon choise">
+                                <span class="tooltip">Красный</span>
+                            </a>
+                            <a style="background-color: #dedede" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="13noprostarlight" class="icon choise">
+                                <span class="tooltip">Звездный</span>
+                            </a>
+                        </div>
+                    }
+                    else if (Color.Contains("12pro"))
+                    {
+                        <div class="wrapper" style="padding:0 0 0 0; margin-top:10px">
+                            <a style="background-color: #121212" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12problack" class="icon choise">
+                                <span class="tooltip">Черный</span>
+                            </a>
+                            <a style="background-color: #adb8f0" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12problue" class="icon choise">
+                                <span class="tooltip">Голубой</span>
+                            </a>
+                            <a style="background-color: #f2ecb3" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12progold" class="icon choise">
+                                <span class="tooltip">Золотой</span>
+                            </a>
+                            <a style="background-color: #dbdbdb" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12prosilver" class="icon choise">
+                                <span class="tooltip">Серебрянный</span>
+                            </a>
+                        </div>
+                    }
+                    else if (Color.Contains("12nopro"))
+                    {
+                        <div class="wrapper" style="padding:0 0 0 0; margin-top:10px">
+                            <a style="background-color: #121212" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12noproblack" class="icon choise">
+                                <span class="tooltip">Черный</span>
+                            </a>
+                            <a style="background-color: #3c72b0" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12noproblue" class="icon choise">
+                                <span class="tooltip">Синий</span>
+                            </a>
+                            <a style="background-color: #eb7eed" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12nopropurple" class="icon choise">
+                                <span class="tooltip">Фиолетовый</span>
+                            </a>
+                            <a style="background-color: #5ba868" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12noprogreen" class="icon choise">
+                                <span class="tooltip">Зеленый</span>
+                            </a>
+                            <a style="background-color: #dedede" asp-page="/PhoneSetup" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="12noprowhite" class="icon choise">
+                                <span class="tooltip">Белый</span>
+                            </a>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(msg))
+                    {
+                        <div class="alert alert-success" style="margin-top:20px">
+                            @msg <br> Перейдите в <a asp-page="/CartShop">коризну</a>, чтобы оформить заказ
+                        </div>
+                    }
+                    @if (!SignInManager1.IsSignedIn(User))
+                    {
+                        <div class="" style="padding-top:30px">
+                            <span>
+                                Чтобы добавлять товары в корзину, войдите или зарегистрируйтесь!
+                            </span>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div style="margin-top:25px">
+                            <button type="submit" class="btn btn-primary" asp-route-Name=@Name asp-route-Capacity=@Capacity asp-route-Color="@Color">Добавить в корзину</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
